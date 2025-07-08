@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="igus_DCi_5S_M">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import igus_DCi_5S_M urdf file -->
+    <xacro:include filename="$(find cobot_description)/urdf/cobot_description.xacro" />
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="igus_DCi_5S_M.ros2_control.xacro" />
+
+
+    <xacro:igus_DCi_5S_M_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+</robot>

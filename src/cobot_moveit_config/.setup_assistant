@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: cobot_description
+    relative_path: urdf/cobot_description.xacro
+  srdf:
+    relative_path: config/igus_DCi_5S_M.srdf
+  package_settings:
+    author_name: TengSudo
+    author_email: tengsudo.vn@gmail.com
+    generated_timestamp: 1744431545
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
