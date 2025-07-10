@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot name="igus_DCi_5S_M">
+
+    <group name="arm">
+        <chain base_link="base_link" tip_link="virtual_link"/>
+    </group>
+
+    <group_state name="zero" group="arm">
+        <joint name="joint_1" value="0"/>
+        <joint name="joint_2" value="0"/>
+        <joint name="joint_3" value="0"/>
+        <joint name="joint_4" value="0"/>
+        <joint name="joint_5" value="0"/>
+        <joint name="virtual_joint" value="0"/>
+    </group_state>
+    <group_state name="folded" group="arm">
+        <joint name="joint_1" value="0"/>
+        <joint name="joint_2" value="-0.7853"/>
+        <joint name="joint_3" value="0.9599"/>
+        <joint name="joint_4" value="1.16"/>
+        <joint name="joint_5" value="0"/>
+        <joint name="virtual_joint" value="0"/>
+    </group_state>
+    <group_state name="home" group="arm">
+        <joint name="joint_1" value="0"/>
+        <joint name="joint_2" value="0"/>
+        <joint name="joint_3" value="0"/>
+        <joint name="joint_4" value="1.5708"/>
+        <joint name="joint_5" value="0"/>
+        <joint name="virtual_joint" value="0"/>
+    </group_state>
+
+    <end_effector name="end_effector" parent_link="virtual_link" group="arm" parent_group="arm"/>
+
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link"/>
+
+    <disable_collisions link1="base_link" link2="link_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="link_2" reason="Never"/>
+    <disable_collisions link1="link_1" link2="link_2" reason="Adjacent"/>
+    <disable_collisions link1="link_1" link2="link_3" reason="Never"/>
+    <disable_collisions link1="link_2" link2="link_3" reason="Adjacent"/>
+    <disable_collisions link1="link_3" link2="link_4" reason="Adjacent"/>
+    <disable_collisions link1="link_3" link2="link_5" reason="Never"/>
+    <disable_collisions link1="link_3" link2="link_tool" reason="Never"/>
+    <disable_collisions link1="link_3" link2="realsense_link" reason="Never"/>
+    <disable_collisions link1="link_4" link2="link_5" reason="Adjacent"/>
+    <disable_collisions link1="link_4" link2="link_tool" reason="Never"/>
+    <disable_collisions link1="link_4" link2="realsense_link" reason="Never"/>
+    <disable_collisions link1="link_5" link2="link_tool" reason="Adjacent"/>
+    <disable_collisions link1="link_5" link2="realsense_link" reason="Default"/>
+    <disable_collisions link1="virtual_link" link2="link_tool" reason="Adjacent"/>
+    <disable_collisions link1="virtual_link" link2="realsense_link" reason="Default"/>
+    <disable_collisions link1="link_tool" link2="realsense_link" reason="Default"/>
+    
+</robot>

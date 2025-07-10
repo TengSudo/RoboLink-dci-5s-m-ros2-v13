@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="igus_DCi_5S_M">
+  
+    <!-- #################################################################################### -->
+
+    <link name="base_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint0.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="">
+          <color rgba="0 0 0 1" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint0Coll.obj" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1.0"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+    </link>
+  
+    <link name="link_1">
+      <visual>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint1.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="">
+          <color rgba="0 0 0 1" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint1Coll.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+      </inertial>
+    </link>
+    <joint name="joint_1" type="revolute">
+      <parent link="base_link" />
+      <child link="link_1" />
+      <origin xyz="0 0 0.125" rpy="0 0 0" />
+      <axis xyz="0 0 1" />
+      <limit lower="${-140 * pi / 180}" upper="${140 * pi / 180}" effort="100" velocity="2.16" />
+    </joint>
+
+    <link name="link_2">
+      <visual>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint2.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="">
+          <color rgba="0 0 0 1" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint2Coll.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+      </inertial>
+    </link>
+    <joint name="joint_2" type="revolute">
+      <parent link="link_1" />
+      <child link="link_2" />
+      <origin xyz="0 0 0.10025" rpy="0 0 0" />
+      <axis xyz="0 1 0" />
+      <limit lower="${-45 * pi / 180}" upper="${70 * pi / 180}" effort="100" velocity="2.16" />
+    </joint>
+
+    <link name="link_3">
+      <visual>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint3.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="">
+          <color rgba="0 0 0 1" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint3Coll.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+      </inertial>
+    </link>
+    <joint name="joint_3" type="revolute">
+      <parent link="link_2" />
+      <child link="link_3" />
+      <origin xyz="0 0 0.27" rpy="0 ${pi/2} 0" />
+      <axis xyz="0 1 0" />
+      <limit lower="${-85 * pi / 180}" upper="${55 * pi / 180}" effort="100" velocity="2.16" />
+    </joint>
+
+    <link name="link_4">
+      <visual>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint4.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint4Coll.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+      </inertial>
+    </link>
+    <joint name="joint_4" type="revolute">
+      <parent link="link_3" />
+      <child link="link_4" />
+      <origin xyz="0 0 0.24" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-10 * pi / 180}" upper="${120 * pi / 180}" effort="100" velocity="2.16"/>
+    </joint> 
+
+    <link name="link_5">
+      <visual>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint5.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="">
+          <color rgba="0 0 0 1" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/Joint5Coll.obj" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+      </inertial>
+    </link>
+    <joint name="joint_5" type="revolute">
+      <parent link="link_4" />
+      <child link="link_5" />
+      <origin xyz="0 0 0.16" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-pi}" upper="${pi}" effort="100" velocity="2.16"/>
+    </joint>
+    
+    <link name="link_tool">
+      <visual>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/link_tool.STL" />
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="">
+          <color rgba="0.0 0.1 0.1 0.45" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cobot_description/meshes/link_tool.STL" />
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+      </inertial>
+    </link>
+    <joint name="joint_tool" type="fixed">
+      <parent link="link_5" />
+      <child link="link_tool" />
+      <origin xyz="0 0 0.1106" rpy="0 0 0"/>
+      <axis xyz="0 0 0"/>
+    </joint>
+
+    <!-- khop ao -->
+    <link name="virtual_link">
+    </link>
+    <joint name="virtual_joint" type="revolute">
+      <parent link="link_tool"/>
+      <child link="virtual_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="100" lower="${-30 * pi / 180}" upper="${30 * pi / 180}" velocity="2.16"/>
+    </joint>
+    <!-- khop ao -->
+    <!-- #################################################################################### -->
+
+    <link name="realsense_link">
+    </link>
+  
+    <joint name="realsense_joint" type="fixed">
+      <parent link="link_5"/> 
+      <child link="realsense_link"/>
+      <origin xyz="-0.046 0 0.025 " rpy="0 -1.570796327 0"/> 
+    </joint>
+  
+    <joint name="camera_color_frame_joint" type="fixed">
+      <parent link="realsense_link"/>
+      <child link="camera_color_frame"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+  
+    <link name="camera_color_frame">
+      <visual>
+        <geometry>
+          <sphere radius="0.01"/>
+        </geometry>
+        <material name="green">
+          <color rgba="0 1 0 1"/>
+        </material>
+      </visual>
+    </link>
+  
+    <joint name="camera_depth_frame_joint" type="fixed">
+      <parent link="realsense_link"/>
+      <child link="camera_depth_frame"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+  
+    <link name="camera_depth_frame">
+      <visual>
+        <geometry>
+          <sphere radius="0.01"/>
+        </geometry>
+        <material name="green">
+          <color rgba="0 1 0 1"/>
+        </material>
+      </visual>
+    </link>
+  
+    <joint name="camera_link_joint" type="fixed">
+      <parent link="realsense_link"/>
+      <child link="camera_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+  
+    <link name="camera_link">
+      <visual>
+        <geometry>
+          <sphere radius="0.01"/>
+        </geometry>
+        <material name="green">
+          <color rgba="0 1 0 1"/>
+        </material>
+      </visual>
+    </link>
+
+</robot>
