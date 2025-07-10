@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from trajectory_msgs.msg import JointTrajectory
+from control_msgs.action import FollowJointTrajectory
+from rclpy.action import ActionServer
+from rclpy.action.server import ServerGoalHandle
+from cri_lib import CRIController
+from math import degrees
+
+class RealArmController(Node):
+    def __init__(self):
+        super().__init__('real_arm_controller')
+
+        # Khởi tạo controller
+        self.controller = CRIController()
+        host = '192.168.3.11'
+        port = 3920    
+        self.controller.connect(host=host, port=port)
+        self.controller.set_active_control(True)
+        self.controller.enable()
+
+        self.get_logger().info("✅ CRIController connected and motors enabled.")
+
+        # Khởi tạo action server
+        self._action_server = ActionServer(
+            self,
+            FollowJointTrajectory,
+            '/arm_controller/follow_joint_trajectory',
+            self.execute_callback
+        )
+
+        self.get_logger().info("✅ Real Arm Controller (action server) is ready.")
+
+    async def execute_callback(self, goal_handle: ServerGoalHandle):
+        self.get_logger().info("📥 Received trajectory goal")
+        trajectory: JointTrajectory = goal_handle.request.trajectory
+
+        # Duyệt từng điểm và gửi lệnh điều khiển
+        for i, point in enumerate(trajectory.points):
+            positions = point.positions
+            if len(positions) < 5:
+                self.get_logger().warn(f"❗ Trajectory point {i} does not have enough joint values.")
+                continue
+
+            # Convert radian → degree
+            joint_angles_deg = [degrees(pos) for pos in positions[:5]]
+            j1, j2, j3, j4, j5 = joint_angles_deg
+
+            # Gửi lệnh điều khiển thực tế
+            self.controller.move_joints(
+                j1, j2, j3, j4, j5,
+                0.0, 0.0, 0.0, 0.0, 30.0,
+                wait_move_finished=True,
+                move_finished_timeout=10000
+            )
+            self.get_logger().info(f"🚀 Sent joints: {[round(j, 2) for j in joint_angles_deg]}")
+
+        # Báo hoàn thành
+        goal_handle.succeed()
+        result = FollowJointTrajectory.Result()
+        return result
+
+    def destroy_node(self):
+        self.controller.disable()
+        self.controller.close()
+        self.get_logger().info("🛑 CRIController disconnected and motors disabled.")
+        super().destroy_node()
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = RealArmController()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
