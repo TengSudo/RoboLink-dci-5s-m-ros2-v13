@@ -1,0 +1,44 @@
+<Robot>
+  <INFO NAME="igus 5DOF SV" SERIAL="" AUTHOR="Christian Meyer" />
+  
+  <BusConfiguration Protocol="CPRCANV2" CycleTimeMS="20" GapMS="1" Type="PCANUSB">
+    <Joints NrOfJoints="5" />
+    <!-- Attention: In this case 32 (means 0x20) is the sender message id, 17 (0x21) is the anser message id.-->
+    <Joint0 ID="16" Min="-1000.0" Max="1000.0" CurrentScale="50.0" CurrentZero="0.0" GearScale="277.78" GearZero="000" GearPlay="0.0" GearPlayInc="0.05"/>
+	<Joint1 ID="32" Min="-1000.0" Max="1000.0" CurrentScale="50.0" CurrentZero="0.0" GearScale="277.78" GearZero="000" GearPlay="0.0" GearPlayInc="0.05"/>
+	<Joint2 ID="48" Min="-1000.0" Max="1000.0" CurrentScale="50.0" CurrentZero="0.0" GearScale="-211.11" GearZero="000" GearPlay="0.0" GearPlayInc="0.05"/>
+	<Joint3 ID="64" Min="-1000.0" Max="1000.0" CurrentScale="50.0" CurrentZero="0.0" GearScale="-211.11" GearZero="000" GearPlay="0.0" GearPlayInc="0.05"/>
+	<Joint4 ID="80" Min="-1000.0" Max="1000.0" CurrentScale="50.0" CurrentZero="0.0" GearScale="-155.56" GearZero="000" GearPlay="0.0" GearPlayInc="0.05"/>
+  </BusConfiguration>
+
+  <RemoteConfiguration IP="192.168.3.11" CycleTimeMS="50" Protocol="CRI_V01" />
+  <TinyCtrl DebugMode="false" User="" Pwd="" Dir="/home/root/TinyCtrl/" DisplayPort="/dev/ttyO1"/>
+  
+  <Kinematic Type="CPRMover5" WristRedundancyHandling="standard" TCPXDirToFront="false" lz0="117.5" lz1="100" lz2="270" lz3="240" lz4="158.5" lz5="11.5" />
+  <ManufacturerJointConfig zOffset="0.0" A1Dir="1.0" A1Offset="0.0"  A2Dir="1.0" A2Offset="0.0"  A3Dir="1.0" A3Offset="90.0"  A4Dir="1.0" A4Offset="0.0"  A5Dir="1.0" A5Offset="0.0"  A6Dir="1.0" A6Offset="0.0" />
+  <SoftwareMinMax A1Min="-140.0" A1Max="140.0" A2Min="-45.0" A2Max="70.0" A3Min="-85.0" A3Max="55.0" A4Min="-10.0" A4Max="120.0" A5Min="-179.0" A5Max="179.0" />
+  
+  <JointVelocities A1="45.0" A2="45.0" A3="45.0" A4="60.0" A5="60.0" A6="0.0" />
+  <JointAccelerations A1="300" A2="300" A3="300" A4="300.0" A5="300.0" A6="300.0" />
+  <JointAccelerationIncs A1="3000" A2="3000" A3="3000" A4="3000.0" A5="3000.0" A6="3000.0" />
+  <CartVelocities VelTrans="250" VelOri="90"/>
+  <CartAccelerations AccLin="1000" AccLinInc="10000" AccOri="360" AccOriInc="3600"/>
+
+  <JointVelocities2 A1="45.0" A2="45.0" A3="45.0" A4="60.0" A5="60.0" A6="0.0" />
+  <JointAccelerations2 A1="300" A2="300" A3="300" A4="300.0" A5="300.0" A6="300.0" />
+  <JointAccelerationIncs2 A1="3000" A2="3000" A3="3000" A4="3000.0" A5="3000.0" A6="3000.0" />
+  <CartVelocities2 VelTrans="250" VelOri="90"/>
+  <CartAccelerations2 AccLin="1000" AccLinInc="10000" AccOri="360" AccOriInc="3600"/>
+  
+  <Referencing Mandatory="true" />
+  
+  <PathGeneration Optimize="true" GeneratorType="02Linear" SlicingMS="20" LookAhead="20" SmoothDistCart="100.0" SmoothDistJoint="20.0"/>
+
+  <Brake Active="false" DOutChannel="20"/>
+
+  <!--Definition of epsilon values for the singularities. Wrist in degree, Center/Ellbow in mm-->
+  <SINGULARITIES Center="30.0" Ellbow="10.0"/>
+  <Velocities JogCart="100.0" JogOri="30.0" JogJoint="1.0" />
+  <Graphics detailed="true" CSSize="100.0"/>
+  <Trail active="true" PointSize="2.0" PointDist="4.0" ColorR="1.0" ColorG="0.4" ColorB="0.0" />
+</Robot>

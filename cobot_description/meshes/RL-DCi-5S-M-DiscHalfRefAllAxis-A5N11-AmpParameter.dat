@@ -1,0 +1,50 @@
+<!-- Parameter set for Commonplace Robotics robotics control  /-->
+<!-- Target Robot: igus robolink                              /-->
+<!-- support@cpr-robots.com                                   /-->
+<AmpParameter>
+
+	<Configuration ModuleType="RailStepperV02" NrOfJoints="5"/>
+	
+	<!-- The second joint (here Joint1) ist a High Current module. The current is 3 times bigger then from the standard modules. /-->
+
+	<Joint0 ID="16" ComTimeOut="2000" MaxCurrent="200" MaxLag="5000" PosP="1.000" PosI="0.000" PosD="0.000" PosAWU="30.000"
+         Encoder="true" SwapEncoderDirection="false" EndSwitchRising="true" StopOnEndSwitch="false"
+         RefStraight="false" RefSinus="false" RefHalf="true" SinusRefTics="6500" SinusRefMaxCycles="6"
+         Offset="0" RefSpeed="80" RefSpeedSlow="10" RefFromBothSides="true"
+         SGThreshold="2" CSLoad="22" CSStart="22" CSIdle="7" CSRef="22" StartArea="200"
+         MinSupplyVoltage="500" MaxTemperature="500" Microstepping="144"
+	/>
+
+    <Joint1 ID="32" ComTimeOut="2000" MaxCurrent="200" MaxLag="5000" PosP="1.000" PosI="0.000" PosD="0.000" PosAWU="30.000"
+         Encoder="true" SwapEncoderDirection="false" EndSwitchRising="true" StopOnEndSwitch="false"
+         RefStraight="false" RefSinus="false" RefHalf="true" SinusRefTics="4500" SinusRefMaxCycles="6"
+         Offset="913" RefSpeed="-80" RefSpeedSlow="-10" RefFromBothSides="true"
+         SGThreshold="2" CSLoad="22" CSStart="22" CSIdle="7" CSRef="22" StartArea="200"
+         MinSupplyVoltage="500" MaxTemperature="500" Microstepping="144"
+	/>
+
+    <Joint2 ID="48" ComTimeOut="2000" MaxCurrent="200" MaxLag="5000" PosP="1.000" PosI="0.000" PosD="0.000" PosAWU="30.000"
+         Encoder="true" SwapEncoderDirection="false" EndSwitchRising="true" StopOnEndSwitch="false"
+         RefStraight="false" RefSinus="false" RefHalf="true" SinusRefTics="3500" SinusRefMaxCycles="6"
+         Offset="-587" RefSpeed="105" RefSpeedSlow="13" RefFromBothSides="true"
+         SGThreshold="2" CSLoad="19" CSStart="19" CSIdle="8" CSRef="19" StartArea="200"
+         MinSupplyVoltage="500" MaxTemperature="500" Microstepping="144"
+	/>
+
+    <Joint3 ID="64" ComTimeOut="2000" MaxCurrent="200" MaxLag="5000" PosP="1.000" PosI="0.000" PosD="0.000" PosAWU="30.000"
+         Encoder="true" SwapEncoderDirection="false" EndSwitchRising="true" StopOnEndSwitch="false"
+         RefStraight="false" RefSinus="false" RefHalf="true" SinusRefTics="3500" SinusRefMaxCycles="6"
+         Offset="-17720" RefSpeed="105" RefSpeedSlow="13" RefFromBothSides="true"
+         SGThreshold="2" CSLoad="16" CSStart="16" CSIdle="7" CSRef="16" StartArea="200"
+         MinSupplyVoltage="500" MaxTemperature="500" Microstepping="144"
+	/>
+
+    <Joint4 ID="80" ComTimeOut="2000" MaxCurrent="200" MaxLag="5000" PosP="1.000" PosI="0.000" PosD="0.000" PosAWU="30.000"
+         Encoder="true" SwapEncoderDirection="false" EndSwitchRising="true" StopOnEndSwitch="false"
+         RefStraight="false" RefSinus="false" RefHalf="true" SinusRefTics="9500" SinusRefMaxCycles="6"
+         Offset="-560" RefSpeed="142" RefSpeedSlow="18" RefFromBothSides="true"
+         SGThreshold="2" CSLoad="11" CSStart="11" CSIdle="6" CSRef="11" StartArea="200"
+         MinSupplyVoltage="500" MaxTemperature="500" Microstepping="144"
+	/>
+
+</AmpParameter>
