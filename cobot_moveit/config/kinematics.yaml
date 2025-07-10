@@ -1,0 +1,14 @@
+arm:
+  kinematics_solver: cached_ik_kinematics_plugin/CachedKDLKinematicsPlugin
+  kinematics_solver_search_resolution: 0.0005  # Độ phân giải tìm kiếm (rad)
+  kinematics_solver_timeout: 0.5  # Thời gian timeout cho IK (giây)
+  # position_only_ik: True  # Chỉ tính toán IK dựa trên vị trí, bỏ qua hướng
+  # orientation_only_ik: False  # Chỉ tính toán IK dựa trên hướng, bỏ qua vị trí
+  # solve_type: Speed  # Loại giải pháp (Speed, Distance, Manipulability)
+  # use_position_approximation: True  # Sử dụng xấp xỉ vị trí để tăng tốc độ
+# cached_ik_kinematics_plugin/CachedKDLKinematicsPlugin 
+# cached_ik_kinematics_plugin/CachedSrvKinematicsPlugin 
+# kdl_kinematics_plugin/KDLKinematicsPlugin 
+# lma_kinematics_plugin/LMAKinematicsPlugin 
+# prbt_manipulator/IKFastKinematicsPlugin 
+# srv_kinematics_plugin/SrvKinematicsPlugin
